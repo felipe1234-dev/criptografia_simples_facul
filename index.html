@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hello Bulma!</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+        	pre {
+            	overflow-x: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="columns">
+            <div class="column is-5 is-offset-3">
+                <section class="section">
+                    <div class="container">
+                        <h1 class="title">
+                            Olá Mundo!
+                        </h1>
+                        <p class="subtitle">
+                            Este é um sistema de <b>criptografia simples</b> que funciona usando a porta lógica: <b>xor</b>.
+                        </p>
+                        <p class="subtitle">
+                            Este sistema possui <b>dois campos</b>: <b>entrada</b> e <b>saída</b>, e <b>duas funções</b>: <b>criptografar</b> e 
+                            <b>decriptografar</b>, qualquer que seja a função escolhida, obtém a entrada como parâmetro e exibe o resultado no campo de saída.
+                        </p>
+                        <p class="subtitle">
+                            O campo de saída não pode ser alterado livremente, por outro lado, o campo de entrada <b>só</b> pode ser alterado se você marcar a caixa de seleção.
+                        </p>
+                        <fieldset>
+
+                            <div class="field">
+                                <label class="label">Entrada</label>
+                                <div class="control">
+                                    <textarea id="input" class="textarea" placeholder="Texto ou cifra" disabled="true">Aprovado</textarea>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <p class="control has-icons-right">
+                                    <input id="key" class="input" type="text" placeholder="Chave" value="3344308" disabled="true">
+                                    <span class="icon is-small is-right">
+                                        <i class="fa fa-key"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field is-grouped is-grouped-centered">
+                                <p class="control">
+                                    <button data-func="decrypt" class="button is-light">
+                                        Decriptar
+                                    </button>
+                                </p>
+                                <p class="control">
+                                    <button data-func="encrypt" class="button is-primary">
+                                        Encriptar
+                                    </button>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        Modificar campos
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <label class="label">Saída</label>
+                                <div class="control">
+                                    <textarea id="output" class="textarea" placeholder="ex. 1010 1100, 1001 1101, 1000 0001" disabled></textarea>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                        <hr class="divider">
+                        <h1 class="title">
+                            Procedimento
+                        </h1>
+                        <p class="subtitle">
+                            No processo de criptografia, todos os caracteres de alguma string de texto são convertidos em seus equivalentes ASCII e, em seguida, são todos convertidos em seus respectivos equivalentes binários.
+                        </p>
+                        <p class="subtitle">
+							A chave é um número arbitrário cuja forma binária será usada para efetuar operações xor com o número anterior, deste jeito:
+                        </p>
+                        <p class="subtitle">
+                        	Assumindo a palava "<b>Casa</b>": <b>67, 97, 115, 97</b> (ASCII)
+                        </p>
+                        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                        	<tbody>
+                            	<tr>
+                              		<td>67</td>
+                                    <td>97</td>
+                                    <td>115</td>
+                                    <td>97</td>
+                              	</tr>
+                                <tr>
+                              		<td>0100 0011</td>
+                                    <td>0110 0001</td>
+                                    <td>0111 0011</td>
+                                    <td>0110 0001</td>
+                              	</tr>
+                        	</tbody>
+                        </table>
+                        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                        	<tbody>
+                            	<tr>
+                              		<td>3</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>0</td>
+                                    <td>8</td>
+                              	</tr>
+                                <tr>
+                              		<td>0000 0011</td>
+                                    <td>0000 0011</td>
+                                    <td>0000 0100</td>
+                                    <td>0000 0100</td>
+                                    <td>0000 0011</td>
+                                    <td>0000 0000</td>
+                                    <td>0000 1000</td>
+                              	</tr>
+                        	</tbody>
+                        </table>
+                        <p class="subtitle">
+                        	Conseguimos os equivalentes de "Casa" e da chave em binário, agora devemos efetuar a operação xor com os dois valores em mãos:
+                        </p>
+                        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                        	<tbody>
+                            	<tr>
+                              		<td>0100 0011</td>
+                                    <td>0110 0001</td>
+                                    <td>0111 0011</td>
+                                    <td>0110 0001</td>
+                              	</tr>
+                                <tr>
+                              		<td>0000 0011</td>
+                                    <td>0000 0011</td>
+                                    <td>0000 0100</td>
+                                    <td>0000 0100</td>
+                                    <td>0000 0011</td>
+                                    <td>0000 0000</td>
+                                    <td>0000 1000</td>
+                              	</tr>
+                                <tr>
+                              		<td>0100 0000</td>
+                                    <td>0110 0010</td>
+                                    <td>0111 0111</td>
+                                    <td>0110 0101</td>
+                              	</tr>
+                        	</tbody>
+                        </table>
+                        <p class="subtitle">
+                        	Observe que quando há um excesso de valores na chave (key.length> string.length), o processo continua enquanto a string tiver elementos restantes.
+                        </p>
+                        <p class="subtitle">
+                        	Mas e se ocorrer o cenário contrário? Os elementos-chave se repetem quando não há mais nenhum.
+                        </p>
+                        <p class="subtitle">
+                        	O processo de decriptografia ocorre revertendo os estágios anteriores. 
+                        </p>
+                        <hr class="divider">
+                        <h1 class="title">
+                            Ok, mas, como isso funciona no código?
+                        </h1>
+                        <p class="subtitle">
+                        	Em primeiro lugar, devemos saber que este sistema funciona principalmente em JavaScript, embora HTML e CSS também fatorem, eles são adjacentes, o sistema real funciona principalmente em JavaScript.
+                        </p>
+                        <p class="subtitle">
+                        	Ele funciona especialmente com base em duas funções principais: encrypt e decrypt, que têm funções adjacentes: int2Bin (converte um número int em binário), bin2Int (faz o mesmo na ordem oposta) e xOr (faz a operação xor).
+                        </p>
+                        <p class="subtitle">
+                        	Você deve estar familiarizado com 3 variáveis (constantes):
+                        </p>
+                        <pre>
+                          <code>
+ <i style="color:#586E75;">// referencia o elemento de caixa de entrada</i>
+ <span style="color:#268BD2;">const</span> input <span style="color:#DA1039;">=</span> <span style="color:#268BD2;">document</span>.<span style="color:#859900;">querySelector</span>(<span style="color:#B58900;">"#input"</span>);
+ 
+ <i style="color:#586E75;">// referencia o elemento de caixa de saída</i>
+ <span style="color:#268BD2;">const</span> output <span style="color:#DA1039;">=</span> <span style="color:#268BD2;">document</span>.<span style="color:#859900;">querySelector</span>(<span style="color:#B58900;">"#output"</span>);
+ 
+ <i style="color:#586E75;">// referencia o elemento de caixa de texto que contém a chave</i>
+ <span style="color:#268BD2;">const</span> key <span style="color:#DA1039;">=</span> <span style="color:#268BD2;">document</span>.<span style="color:#859900;">querySelector</span>(<span style="color:#B58900;">"#key"</span>);
+                          </code>
+                        </pre>
+                        <hr class="divider">
+                        <p class="subtitle">
+                        	A primeira função é encrypt:
+                        </p>
+                        <pre>
+                          <code>
+ <span style="color:#268BD2;">const</span> encrypt <span style="color:#DA1039;">=</span> () <span style="color:#268BD2;">=></span> {
+ 	<i style="color:#586E75;">// str referencia o valor de input</i>
+        <i style="color:#586E75;">// (o que você escreveu no campo de entrada)</i>
+ 	<span style="color:#268BD2;">let</span> str <span style="color:#DA1039;">=</span> input.value,
+    
+    	<i style="color:#586E75;">// ascii obterá as formas em ASCII dos caracteres,</i>
+        <i style="color:#586E75;">// por ora, split("") divide a string str</i> 
+        <i style="color:#586E75;">// em uma array a cada ocorrência de algum caractere</i>
+        <i style="color:#586E75;">// - denotado por ""</i>
+        ascii <span style="color:#DA1039;">=</span> str.<span style="color:#859900;">split</span>(<span style="color:#B58900;">""</span>),
+        
+        <i style="color:#586E75;">// transforma a chave em string ("(...).toString()")</i>
+        <i style="color:#586E75;">// e, em seguida, cada caractere vira uma posição</i> 
+        <i style="color:#586E75;">// de uma array</i>
+        k <span style="color:#DA1039;">=</span> (key.value).<span style="color:#859900;">toString</span>().<span style="color:#859900;">split</span>(<span style="color:#B58900;">""</span>);
+        
+        <i style="color:#586E75;">// convertendo a chave em binário...</i>
+        <span style="color:#DA1039;">for</span> (<i style="color:#B58900;">i</i> <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>; <i style="color:#B58900;">i</i> <span style="color:#DA1039;"><</span> k.length; <i style="color:#B58900;">i</i> <span style="color:#DA1039;">++</span>) {
+        	k[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">=</span> int2Bin(<span style="color:#859900;">parseInt</span>(k[<i style="color:#B58900;">i</i>]));
+        }
+        
+        <i style="color:#586E75;">// convertendo os chars gravados em ascii</i>
+        <i style="color:#586E75;">// em seus respectivos equivlentes ASCII</i>
+        <span style="color:#DA1039;">for</span> (<i style="color:#B58900;">i</i> <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>; <i style="color:#B58900;">i</i> <span style="color:#DA1039;"><</span> ascii.length; <i style="color:#B58900;">i</i> <span style="color:#DA1039;">++</span>) {
+        	ascii[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">=</span> ascii[<i style="color:#B58900;">i</i>].<span style="color:#859900;">charCodeAt</span>();
+        }
+        <i style="color:#586E75;">// "...".charCodeAt(): função nativa do JavaScript</i>
+        <i style="color:#586E75;">// para converter chars em decimais ASCII</i>
+        
+        <i style="color:#586E75;">// os valores da array ascii já foram convertidos em</i>
+        <i style="color:#586E75;">// decimais de ASCII, agora, a array bin vai receber</i>
+        <i style="color:#586E75;">// as formas em binário desses valores</i>
+        <span style="color:#268BD2;">let</span> bin <span style="color:#DA1039;">=</span> <i style="color:#B58900;">new</i> <u style="color:#859900;">Array</u>(ascii.length);
+        <span style="color:#DA1039;">for</span> (<i style="color:#B58900;">i</i> <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>; <i style="color:#B58900;">i</i> <span style="color:#DA1039;"><</span> ascii.length; <i style="color:#B58900;">i</i> <span style="color:#DA1039;">++</span>) {
+        	bin[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">=</span> int2Bin(<span style="color:#859900;">parseInt</span>(ascii[<i style="color:#B58900;">i</i>]));
+        }
+        
+        <i style="color:#586E75;">// o html interno de output vai receber</i>
+        <i style="color:#586E75;">// o resultado da operação xor pela função xOr</i>
+        output.innerHTML <span style="color:#DA1039;">=</span> xOr(bin.<span style="color:#859900;">join</span>(<span style="color:#B58900;">", "</span>), k.<span style="color:#859900;">join</span>(<span style="color:#B58900;">", "</span>));
+        <i style="color:#586E75;">// (...).join("..."): em vez de separar strings</i>
+        <i style="color:#586E75;">// em arrays, junta arrays em uma única string,</i>
+        <i style="color:#586E75;">// em que, uma string arbitrária, como ", ", será</i>
+        <i style="color:#586E75;">// usada para se por entre os índices</i>
+ }
+                          </code>
+                       </pre>
+                       <hr class="divider">
+                       <p class="subtitle">
+                       		Como você deve ter notado, algumas funções externas / desconhecidas foram usadas: uma para converter ints em binários e outra para converter binários em ints.
+                       </p>
+                       <p class="subtitle">
+							Embora tenham sido mencionadas mais cedo, não foram definidas e explicadas em detalhe.
+                       </p>
+                       <p class="subtitle">
+							Ambos os códigos são mais facilmente compreendidos se o leitor conhece o básico de conversão de bases. Portanto, vou explicá-los assumindo que você possua esse conhecimento.
+                       </p>
+                       <hr class="divider">
+                       <h2 class="title is-size-3">bin2Int</h2>
+                       <pre>
+                       		<code>
+<span style="color:#268BD2;">const</span> bin2Int <span style="color:#DA1039;">=</span> (<i style="color:#B58900;">code</i>) <span style="color:#268BD2;">=></span> {
+    <i style="color:#586E75;">// Binário para int</i>
+    <i style="color:#586E75;">// conterá a forma decimal</i>
+    <span style="color:#268BD2;">let</span> int <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>;
+    
+    <i style="color:#586E75;">// transforma em uma array com um caractere em cada psoição</i>
+    <i style="color:#B58900;">code</i> <span style="color:#DA1039;">=</span> <i style="color:#B58900;">code</i>.<span style="color:#859900;">split</span>(<span style="color:#B58900;">""</span>);
+    
+    <i style="color:#586E75;">// j é o valor do expoente em função da posição</i>
+    <i style="color:#586E75;">// dígito</i>
+    <span style="color:#268BD2;">let</span> j<span style="color:#DA1039;">=</span><span style="color:#6F5499;">0</span>;
+    
+    <i style="color:#586E75;">// o loop vai do último item da array ao primeiro</i>
+    <i style="color:#586E75;">// porque, enquanto na matemática contamos os expoentes</i>
+    <i style="color:#586E75;">// da direita para a esquerda, javascript e</i>
+    <i style="color:#586E75;">// outras linguagens contam os array da esquerda</i>
+    <i style="color:#586E75;">// para a direita</i>
+    <span style="color:#DA1039;">for</span> (<i style="color:#B58900;">i</i><span style="color:#DA1039;">=</span><i style="color:#B58900;"><i style="color:#B58900;">code</i></i>.length-<span style="color:#6F5499;">1</span>; <i style="color:#B58900;">i</i><span style="color:#DA1039;">></span>-<span style="color:#6F5499;">1</span>; <i style="color:#B58900;">i</i><span style="color:#DA1039;">--</span>) {
+    	<i style="color:#586E75;">// como o parâmetro é uma string e as pessoas às vezes</i>
+        <i style="color:#586E75;">// gostam de formatar assim: "0000 0000" (com espaços),</i>
+        <i style="color:#586E75;">// o if verifica se a posição equivale a "1" ou "0"</i>
+        <i style="color:#586E75;">// para o expoente não somar sem necessidade</i>
+    	<span style="color:#DA1039;">if</span> (<i style="color:#B58900;">code</i>[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">==</span> <span style="color:#B58900;">"1"</span> <span style="color:#DA1039;">||</span> <i style="color:#B58900;">code</i>[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">==</span> <span style="color:#B58900;">"0"</span>){
+        	int <span style="color:#DA1039;">+=</span> <span style="color:#859900;">parseInt</span>(<i style="color:#B58900;">code</i>[<i style="color:#B58900;">i</i>])<span style="color:#DA1039;">*</span><span style="color:#859900;">Math</span>.<span style="color:#859900;">pow</span>(<span style="color:#6F5499;">2</span>,j);
+          	j<span style="color:#DA1039;">++</span>;
+        }
+    }
+    <span style="color:#DA1039;">return</span> int;
+}
+                            </code>
+                       </pre>
+                       <hr class="divider">
+                       <h2 class="title is-size-3">int2Bin</h2>
+                       <pre>
+                       		<code>
+<span style="color:#268BD2;">const</span> int2Bin <span style="color:#DA1039;">=</span> (<i style="color:#B58900;">code</i>) <span style="color:#268BD2;">=></span> {
+    <i style="color:#586E75;">// Int para binário</i>
+    <span style="color:#268BD2;">let</span> bin <span style="color:#DA1039;">=</span> <i style="color:#B58900;">new</i> <u style="color:#859900;">Array</u>(
+    	<span style="color:#B58900;">"0"</span>, <span style="color:#B58900;">"0"</span>, <span style="color:#B58900;">"0"</span>, <span style="color:#B58900;">"0"</span>, <span style="color:#B58900;">" "</span>, 
+        <span style="color:#B58900;">"0"</span>, <span style="color:#B58900;">"0"</span>, <span style="color:#B58900;">"0"</span>, <span style="color:#B58900;">"0"</span>
+    );
+    
+    <i style="color:#586E75;">// i é o tamanho da array bin</i>
+    <span style="color:#268BD2;">let</span> i <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">9</span>;
+    
+    <span style="color:#DA1039;">do</span> {
+    	<i style="color:#B58900;">i</i><span style="color:#DA1039;">--</span>;
+        
+        <i style="color:#586E75;">// quando i é igual a 4</i>
+        <i style="color:#586E75;">// a posição de índice no bin está</i>
+        <i style="color:#586E75;">// no caractere de espaço</i>
+        <i style="color:#586E75;">// i é diminuído 1 para pular</i>
+        <span style="color:#DA1039;">if</span> (<i style="color:#B58900;">i</i> <span style="color:#DA1039;">==</span> <span style="color:#6F5499;">4</span>) 
+        	<i style="color:#B58900;">i</i><span style="color:#DA1039;">--</span>;
+        
+        <i style="color:#586E75;">// coloca o resto da divisão na array</i>
+        bin[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">=</span> <i style="color:#B58900;">code</i> <span style="color:#DA1039;">%</span> <span style="color:#6F5499;">2</span>;
+        
+        <i style="color:#586E75;">// Math.floor(...) retira a parte decimal</i>
+       	<i style="color:#B58900;">code</i> <span style="color:#DA1039;">=</span> <span style="color:#859900;">Math</span>.<span style="color:#859900;">floor</span>(<i style="color:#B58900;">code</i> <span style="color:#DA1039;">/</span> <span style="color:#6F5499;">2</span>);
+
+    } <span style="color:#DA1039;">while</span> (<i style="color:#B58900;">code</i> <span style="color:#DA1039;">/</span> <span style="color:#6F5499;">2</span> <span style="color:#DA1039;">></span> <span style="color:#6F5499;">0</span>);
+    <span style="color:#DA1039;">return</span> bin.<span style="color:#859900;">join</span>(<span style="color:#B58900;">""</span>);
+}
+                            </code>
+                       </pre>
+                       <hr class="divider">
+                       <h2 class="title is-size-3">xOr</h2>
+                       <pre>
+                       		<code>
+<span style="color:#268BD2;">const</span> xOr <span style="color:#DA1039;">=</span> (<i style="color:#B58900;">str</i>, <i style="color:#B58900;">k</i>) <span style="color:#268BD2;">=></span> {
+    <span style="color:#268BD2;">let</span> out <span style="color:#DA1039;">=</span> <span style="color:#B58900;">""</span>,
+    	arr <span style="color:#DA1039;">=</span> <i style="color:#B58900;">str</i>.<span style="color:#859900;">split</span>(<span style="color:#B58900;">""</span>);
+    <i style="color:#B58900;">k</i> <span style="color:#DA1039;">=</span> <i style="color:#B58900;">k</i>.<span style="color:#859900;">split</span>(<span style="color:#B58900;">""</span>);
+
+    <span style="color:#268BD2;">let</span> j <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>;
+    <span style="color:#DA1039;">for</span> (<i style="color:#B58900;">i</i> <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>; <i style="color:#B58900;">i</i> <span style="color:#DA1039;"><</span> arr.length; <i style="color:#B58900;">i</i> <span style="color:#DA1039;">++</span>) {
+    	<span style="color:#DA1039;">if</span> (arr[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">==</span> <span style="color:#B58900;">"0"</span> <span style="color:#DA1039;">||</span> arr[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">==</span> <span style="color:#B58900;">"1"</span>) {
+            <span style="color:#DA1039;">if</span> (j <span style="color:#DA1039;">></span> <i style="color:#B58900;">k</i>.length<span style="color:#DA1039;">-</span><span style="color:#6F5499;">1</span>) {
+            	j <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>;
+            }
+            <span style="color:#DA1039;">if</span> (arr[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">!=</span> <i style="color:#B58900;">k</i>[j]) {
+            	out <span style="color:#DA1039;">+=</span> <span style="color:#B58900;">"1"</span>;
+            } <span style="color:#DA1039;">else</span> {
+            	out <span style="color:#DA1039;">+=</span> <span style="color:#B58900;">"0"</span>;
+            }
+        } <span style="color:#DA1039;">else</span> {
+            out <span style="color:#DA1039;">+=</span> arr[<i style="color:#B58900;">i</i>];
+        }
+        j<span style="color:#DA1039;">++</span>;
+    }
+
+    <span style="color:#DA1039;">return</span> out;
+}
+                            </code>
+                       </pre>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <script type="text/javascript">
+            const key = document.querySelector("#key");
+            const input = document.querySelector("#input");
+            const output = document.querySelector("#output");
+            const check = document.querySelector("input[type='checkbox']");
+            const btns = document.querySelectorAll("button");
+
+            const int2Bin = (code) => {
+                let bin = new Array(
+                    "0", "0", "0", "0", " ", 
+                    "0", "0", "0", "0"
+                );
+                let i = 9;
+                do {
+                    i--;
+                    if (i == 4) 
+                        i--;
+                    
+                    bin[i] = code % 2;
+                    code = Math.floor(code / 2);
+                } while (code / 2 > 0);
+                return bin.join("");
+            }
+            
+            const bin2Int = (code) => {
+                let int = 0;
+                code = code.split("");
+                let j=0;
+                for (i=code.length-1; i>-1; i--) {
+                    if (code[i] == "1" || code[i] == "0"){
+                        int += parseInt(code[i])*Math.pow(2,j);
+                        j++;
+                    }
+                }
+                return int;
+            }
+
+            const xOr = (str, k) => {
+                let out = "",
+                    arr = str.split("");
+                k = k.split("");
+
+                let j = 0;
+                for (i = 0; i < arr.length; i ++) {
+                    if (arr[i] == "0" || arr[i] == "1") {
+                        if (j > k.length-1) {
+                            j = 0;
+                        }
+                        if (arr[i] != k[j]) {
+                            out += "1";
+                        } else {
+                            out += "0";
+                        }
+                    } else {
+                    	out += arr[i];
+                    }
+                    j++;
+                }
+
+                return out;
+            }
+
+            const encrypt = () => {
+                let str = input.value,
+                    ascii = str.split(""),
+                    k = (key.value).toString().split("");
+                for (i = 0; i < k.length; i ++) {
+                	k[i] = int2Bin(parseInt(k[i]));
+                }
+                for (i = 0; i < ascii.length; i ++) {
+                    ascii[i] = ascii[i].charCodeAt();
+                }
+                let bin = new Array(ascii.length);
+                for (i = 0; i < ascii.length; i ++) {
+                    bin[i] = int2Bin(parseInt(ascii[i]));
+                }
+                output.innerHTML = xOr(bin.join(", "), k.join(", "));
+            }
+
+            const decrypt = () => {
+            	let str = input.value,
+                	k = (key.value).toString().split("");
+                for (i = 0; i < k.length; i ++) {
+                	k[i] = int2Bin(parseInt(k[i]));
+                }
+                let xor = xOr(str, k.join(", ")),
+                	bin = xor.split(", "),
+                    ascii = "";
+                for (k = 0; k < bin.length; k++) {
+                	ascii += bin2Int(bin[k])+", ";
+                }
+                let chars = ascii.split(", ");
+                for (l = 0; l < chars.length; l++){
+                	chars[l] = String.fromCharCode(parseInt(chars[l]));
+                }
+                output.innerHTML = chars.join("");
+            } 
+            
+            check.addEventListener("change", () => {
+                key.disabled = !key.disabled;
+                input.disabled = !input.disabled;
+            });
+
+            btns.forEach(item => {
+                let action = item.dataset.func;
+                action == "encrypt" ? 
+                	item.addEventListener("click", encrypt) : 
+                	item.addEventListener("click", decrypt);
+            });
+        </script>
+    </body>
+</html>
+
+
