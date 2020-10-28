@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+    	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Criptografia Simples com xOr - Uninter</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
         	pre {
-            	overflow-x: hidden;
-            }
+            		overflow-x: hidden;
+            	}
         </style>
     </head>
     <body>
@@ -79,10 +79,10 @@
                             Procedimento
                         </h1>
                         <p class="subtitle">
-                            No processo de criptografia, todos os caracteres de alguma string de texto são convertidos em seus equivalentes ASCII e, em seguida, são todos convertidos em seus respectivos equivalentes binários.
+				No processo de <b>criptografia</b>, todos os caracteres de alguma string de texto são convertidos em seus equivalentes <b>ASCII</b> e, em seguida, são todos convertidos em seus respectivos equivalentes <b>binários</b>.
                         </p>
                         <p class="subtitle">
-							A chave é um número arbitrário cuja forma binária será usada para efetuar operações xor com o número anterior, deste jeito:
+				A <b>chave</b> é um número <b>arbitrário</b> cuja forma binária será usada para efetuar <b>operações xor</b> com o número anterior, deste jeito:
                         </p>
                         <p class="subtitle">
                         	Assumindo a palava "<b>Casa</b>": <b>67, 97, 115, 97</b> (ASCII)
@@ -90,13 +90,13 @@
                         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                         	<tbody>
                             	<tr>
-                              		<td>67</td>
+                              	    <td>67</td>
                                     <td>97</td>
                                     <td>115</td>
                                     <td>97</td>
                               	</tr>
                                 <tr>
-                              		<td>0100 0011</td>
+                              	    <td>0100 0011</td>
                                     <td>0110 0001</td>
                                     <td>0111 0011</td>
                                     <td>0110 0001</td>
@@ -106,7 +106,7 @@
                         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                         	<tbody>
                             	<tr>
-                              		<td>3</td>
+                              	    <td>3</td>
                                     <td>3</td>
                                     <td>4</td>
                                     <td>4</td>
@@ -115,7 +115,7 @@
                                     <td>8</td>
                               	</tr>
                                 <tr>
-                              		<td>0000 0011</td>
+                              	    <td>0000 0011</td>
                                     <td>0000 0011</td>
                                     <td>0000 0100</td>
                                     <td>0000 0100</td>
@@ -123,15 +123,15 @@
                                     <td>0000 0000</td>
                                     <td>0000 1000</td>
                               	</tr>
-                        	</tbody>
+                           </tbody>
                         </table>
                         <p class="subtitle">
-                        	Conseguimos os equivalentes de "Casa" e da chave em binário, agora devemos efetuar a operação xor com os dois valores em mãos:
+				Conseguimos os equivalentes de "<b>Casa</b>" e da <b>chave</b> em <b>binário</b>, agora devemos efetuar a operação xor com os dois valores em mãos:
                         </p>
                         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                         	<tbody>
                             	<tr>
-                              		<td>0100 0011</td>
+                              	    <td>0100 0011</td>
                                     <td>0110 0001</td>
                                     <td>0111 0011</td>
                                     <td>0110 0001</td>
@@ -154,26 +154,26 @@
                         	</tbody>
                         </table>
                         <p class="subtitle">
-                        	Observe que quando há um excesso de valores na chave (key.length> string.length), o processo continua enquanto a string tiver elementos restantes.
+				Observe que quando há um <b>excesso de valores</b> na <b>chave</b> (<code>key.length > string.length</code>), o processo continua enquanto <b>a string tiver elementos restantes</b>.
                         </p>
                         <p class="subtitle">
-                        	Mas e se ocorrer o cenário contrário? Os elementos-chave se repetem quando não há mais nenhum.
+				<b>Mas e se ocorrer o cenário contrário?</b> Os elementos da chave se repetem em loop.
                         </p>
                         <p class="subtitle">
-                        	O processo de decriptografia ocorre revertendo os estágios anteriores. 
+				O processo de <b>decriptografia</b> ocorre apenas <b>revertendo os estágios anteriores</b>. 
                         </p>
                         <hr class="divider">
                         <h1 class="title">
                             Ok, mas, como isso funciona no código?
                         </h1>
                         <p class="subtitle">
-                        	Em primeiro lugar, devemos saber que este sistema funciona principalmente em JavaScript, embora HTML e CSS também fatorem, eles são adjacentes, o sistema real funciona principalmente em JavaScript.
+                        	Em primeiro lugar, devemos saber que este sistema funciona <b>principalmente</b> em <b>JavaScript</b>, embora <b>HTML e CSS</b> também fatorem, eles são adjacentes, o sistema real funciona principalmente em JavaScript.
                         </p>
                         <p class="subtitle">
-                        	Ele funciona especialmente com base em duas funções principais: encrypt e decrypt, que têm funções adjacentes: int2Bin (converte um número int em binário), bin2Int (faz o mesmo na ordem oposta) e xOr (faz a operação xor).
+                        	Ele funciona <b>especialmente</b> com base em <b>duas funções</b> principais: <b>encrypt</b> e <b>decrypt</b>, que têm funções adjacentes: <b>int2Bin</b> (converte um número int em binário), <b>bin2Int</b> (faz o mesmo na ordem oposta) e <b>xOr</b> (faz a operação xor).
                         </p>
                         <p class="subtitle">
-                        	Você deve estar familiarizado com 3 variáveis (constantes):
+                        	Você deve estar familiarizado com <b>3</b> variáveis (<b>constantes</b>):
                         </p>
                         <pre>
                           <code>
@@ -189,7 +189,7 @@
                         </pre>
                         <hr class="divider">
                         <p class="subtitle">
-                        	A primeira função é encrypt:
+                        	A primeira função é <b>encrypt</b>:
                         </p>
                         <pre>
                           <code>
@@ -242,13 +242,13 @@
                        </pre>
                        <hr class="divider">
                        <p class="subtitle">
-                       		Como você deve ter notado, algumas funções externas / desconhecidas foram usadas: uma para converter ints em binários e outra para converter binários em ints.
+                       		Como você deve ter notado, algumas funções externas/desconhecidas foram usadas: uma para converter <b>ints em binários</b> e outra para converter <b>binários em ints</b>.
                        </p>
                        <p class="subtitle">
 							Embora tenham sido mencionadas mais cedo, não foram definidas e explicadas em detalhe.
                        </p>
                        <p class="subtitle">
-							Ambos os códigos são mais facilmente compreendidos se o leitor conhece o básico de conversão de bases. Portanto, vou explicá-los assumindo que você possua esse conhecimento.
+							Ambos os códigos são <b>mais facilmente compreendidos</b> se o leitor conhece <b>o básico de conversão de bases</b>. Portanto, vou explicá-los assumindo que você possua esse conhecimento.
                        </p>
                        <hr class="divider">
                        <h2 class="title is-size-3">bin2Int</h2>
