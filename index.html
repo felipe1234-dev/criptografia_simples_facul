@@ -312,7 +312,7 @@
         <i style="color:#586E75;">// coloca o resto da divisão na array</i>
         bin[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">=</span> <i style="color:#B58900;">code</i> <span style="color:#DA1039;">%</span> <span style="color:#6F5499;">2</span>;
         
-        <i style="color:#586E75;">// Math.floor(...) retira a parte decimal</i>
+        q
        	<i style="color:#B58900;">code</i> <span style="color:#DA1039;">=</span> <span style="color:#859900;">Math</span>.<span style="color:#859900;">floor</span>(<i style="color:#B58900;">code</i> <span style="color:#DA1039;">/</span> <span style="color:#6F5499;">2</span>);
 
     } <span style="color:#DA1039;">while</span> (<i style="color:#B58900;">code</i> <span style="color:#DA1039;">/</span> <span style="color:#6F5499;">2</span> <span style="color:#DA1039;">></span> <span style="color:#6F5499;">0</span>);
@@ -325,22 +325,43 @@
                        <pre>
                        		<code>
 <span style="color:#268BD2;">const</span> xOr <span style="color:#DA1039;">=</span> (<i style="color:#B58900;">str</i>, <i style="color:#B58900;">k</i>) <span style="color:#268BD2;">=></span> {
+    <i style="color:#586E75;">// out conterá o resultado da operação de xor com str e k (key = chave)</i>
     <span style="color:#268BD2;">let</span> out <span style="color:#DA1039;">=</span> <span style="color:#B58900;">""</span>,
+    	<i style="color:#586E75;">// coloca cada caractere de str numa posição da array</i>
     	arr <span style="color:#DA1039;">=</span> <i style="color:#B58900;">str</i>.<span style="color:#859900;">split</span>(<span style="color:#B58900;">""</span>);
+    <i style="color:#586E75;">// (rt) coloca cada caractere de k (chave) em uma posição da array</i>
     <i style="color:#B58900;">k</i> <span style="color:#DA1039;">=</span> <i style="color:#B58900;">k</i>.<span style="color:#859900;">split</span>(<span style="color:#B58900;">""</span>);
-
+	
+    <i style="color:#586E75;">// j fala a posição de índice da chave</i>
     <span style="color:#268BD2;">let</span> j <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>;
     <span style="color:#DA1039;">for</span> (<i style="color:#B58900;">i</i> <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>; <i style="color:#B58900;">i</i> <span style="color:#DA1039;"><</span> arr.length; <i style="color:#B58900;">i</i> <span style="color:#DA1039;">++</span>) {
-    	<span style="color:#DA1039;">if</span> (arr[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">==</span> <span style="color:#B58900;">"0"</span> <span style="color:#DA1039;">||</span> arr[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">==</span> <span style="color:#B58900;">"1"</span>) {
+    	
+        <i style="color:#586E75;">// como a formatação possui um espaço ("0000 0000"vs"00000000")</i>
+        <i style="color:#586E75;">// este if verifica se a posição equivale a 1 ou 0</i>
+        <span style="color:#DA1039;">if</span> (arr[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">==</span> <span style="color:#B58900;">"0"</span> <span style="color:#DA1039;">||</span> arr[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">==</span> <span style="color:#B58900;">"1"</span>) {
+        	
+            <i style="color:#586E75;">// para tomar cuidado caso j cresça</i>
+            <i style="color:#586E75;">// mais que o tamanho da array k</i>
             <span style="color:#DA1039;">if</span> (j <span style="color:#DA1039;">></span> <i style="color:#B58900;">k</i>.length<span style="color:#DA1039;">-</span><span style="color:#6F5499;">1</span>) {
             	j <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>;
             }
+            
+            <i style="color:#586E75;">// o xor, por vezes chamado de detector de</i>
+            <i style="color:#586E75;">// desigualdade, dá verdadeiro se os</i>
+            <i style="color:#586E75;">// valores forem diferentes,</i>
+            <i style="color:#586E75;">// o if verifica se arr[i] é diferente de k[j],</i>
+            <i style="color:#586E75;">// caso afirmativo, põe 1, caso negativo, põe 0</i>
+            <i style="color:#586E75;">// na variável out</i>
             <span style="color:#DA1039;">if</span> (arr[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">!=</span> <i style="color:#B58900;">k</i>[j]) {
             	out <span style="color:#DA1039;">+=</span> <span style="color:#B58900;">"1"</span>;
             } <span style="color:#DA1039;">else</span> {
             	out <span style="color:#DA1039;">+=</span> <span style="color:#B58900;">"0"</span>;
             }
         } <span style="color:#DA1039;">else</span> {
+        	
+            <i style="color:#586E75;">// se a posição equivale a qualquer coisa</i>
+            <i style="color:#586E75;">// que não seja 0 ou 1, sem alterar nada,</i>
+            <i style="color:#586E75;">// coloca seja o que for dentro de out</i>
             out <span style="color:#DA1039;">+=</span> arr[<i style="color:#B58900;">i</i>];
         }
         j<span style="color:#DA1039;">++</span>;
@@ -466,5 +487,4 @@
         </script>
     </body>
 </html>
-
 
