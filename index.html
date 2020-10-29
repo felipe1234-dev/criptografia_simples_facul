@@ -244,15 +244,68 @@
  }
                           </code>
                        </pre>
+		       <hr class="divider">
+		       <p class="subtitle">
+		       		A segunada é <b>decrypt</b>:
+		       </p>
+		       <pre>
+		       	  <code>
+const decrypt = () => {
+	// str recebe o valor da caixa de entrada
+	let str = input.value,
+	    // k vai conter a chave
+            // transforma em string e põe cada caractere
+            // em uma posição da array k
+            k = (key.value).toString().split("");
+
+	// transformando a chave em binário
+	for (i = 0; i < k.length; i ++) {
+		k[i] = int2Bin(parseInt(k[i]));
+	}
+
+	// xor pega o res da operação xor
+	// que acaba retornando a formas em binário
+	// dos decimais ASCII
+	let xor = xOr(str, k.join(", ")),
+	   // split separa em forma de array
+	   // o xor, a cada ocorrência de ", "
+	   // que serve para separar o binário
+	   // de cada caractere ASCII
+	   bin = xor.split(", "),
+	   // ascii receberá a conversão
+	   ascii = "";
+
+	// convertendo binário para int e pondo em ascii
+	for (k = 0; k < bin.length; k++) {
+		ascii += bin2Int(bin[k])+", ";
+	}
+
+	// agora vamos converter os decimais de ASCII
+	// em caracteres e por na array chars
+	let chars = ascii.split(", ");
+	
+	for (l = 0; l < chars.length; l++){
+		chars[l] = String.fromCharCode(parseInt(chars[l]));
+		// String.fromCharCode(...): converte decimal ASCII em
+		// caractere
+	}
+
+	// converte chars (array) em string
+	// e coloca no HTML interno de output
+	output.innerHTML = chars.join("");
+}
+
+			  </code>
+		       </pre>
                        <hr class="divider">
                        <p class="subtitle">
                        		Como você deve ter notado, algumas funções externas/desconhecidas foram usadas: uma para converter <b>ints em binários</b> e outra para converter <b>binários em ints</b>.
                        </p>
                        <p class="subtitle">
-							Embora tenham sido mencionadas mais cedo, não foram definidas e explicadas em detalhe.
+			        Embora tenham sido mencionadas mais cedo, não foram definidas e explicadas em detalhe.
                        </p>
                        <p class="subtitle">
-							Ambos os códigos são <b>mais facilmente compreendidos</b> se o leitor conhece <b>o básico de conversão de bases</b>. Portanto, vou explicá-los assumindo que você possua esse conhecimento.
+				Ambos os códigos são <b>mais facilmente compreendidos</b> se o leitor conhece <b>o básico de conversão de bases</b>. Portanto, vou explicá-los assumindo que você possua esse conhecimento.
                        </p>
                        <hr class="divider">
                        <h2 class="title is-size-3">bin2Int</h2>
