@@ -256,7 +256,7 @@
 	    <i style="color:#586E75;">// k vai conter a chave</i>
             <i style="color:#586E75;">// transforma em string e põe cada caractere</i>
             <i style="color:#586E75;">// em uma posição da array k</i>
-            k <span style="color:#DA1039;">=</span> (key.value).<span style="color:#859900;">toString</span>().<span style="color:#859900;">split</span>("");
+            k <span style="color:#DA1039;">=</span> (key.value).<span style="color:#859900;">toString</span>().<span style="color:#859900;">split</span>(<span style="color:#B58900;">""</span>);
 
 	<i style="color:#586E75;">// transformando a chave em binário</i>
 	<span style="color:#DA1039;">for</span> (<i style="color:#B58900;">i</i> <span style="color:#DA1039;">=</span> 0; <i style="color:#B58900;">i</i> <span style="color:#DA1039;"><</span> k.length; <i style="color:#B58900;">i</i> <span style="color:#DA1039;">++</span>) {
@@ -277,7 +277,7 @@
 
 	<i style="color:#586E75;">// convertendo binário para int e pondo em ascii</i>
 	<span style="color:#DA1039;">for</span> (<i style="color:#B58900;">k</i> <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>; <i style="color:#B58900;">k</i> <span style="color:#DA1039;"><</span> bin.length; <i style="color:#B58900;">k</i><span style="color:#DA1039;">++</span>) {
-		ascii <span style="color:#DA1039;">+=</span> bin2Int(bin[<i style="color:#B58900;">k</i>])<span style="color:#DA1039;">+</span><span style="color:#B58900;">", ";
+		ascii <span style="color:#DA1039;">+=</span> bin2Int(bin[<i style="color:#B58900;">k</i>])<span style="color:#DA1039;">+</span><span style="color:#B58900;">", "</span>;
 	}
 
 	<i style="color:#586E75;">// agora vamos converter os decimais de ASCII</i>
