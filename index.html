@@ -250,49 +250,49 @@
 		       </p>
 		       <pre>
 		       	  <code>
-const decrypt = () => {
-	// str recebe o valor da caixa de entrada
-	let str = input.value,
-	    // k vai conter a chave
-            // transforma em string e põe cada caractere
-            // em uma posição da array k
-            k = (key.value).toString().split("");
+<span style="color:#268BD2;">const</span> decrypt <span style="color:#DA1039;">=</span> ()<span style="color:#268BD2;">=></span> {
+	<i style="color:#586E75;">// str recebe o valor da caixa de entrada</i>
+	<span style="color:#268BD2;">let</span> str <span style="color:#DA1039;">=</span> input.value,
+	    <i style="color:#586E75;">// k vai conter a chave</i>
+            <i style="color:#586E75;">// transforma em string e põe cada caractere
+            <i style="color:#586E75;">// em uma posição da array k</i>
+            k <span style="color:#DA1039;">=</span> (key.value).<span style="color:#859900;">toString</span>().<span style="color:#859900;">split</span>("");
 
-	// transformando a chave em binário
-	for (i = 0; i < k.length; i ++) {
-		k[i] = int2Bin(parseInt(k[i]));
+	<i style="color:#586E75;">// transformando a chave em binário</i>
+	<span style="color:#DA1039;">for</span> (<i style="color:#B58900;">i</i> <span style="color:#DA1039;">=</span> 0; <i style="color:#B58900;">i</i> <span style="color:#DA1039;"><</span> k.length; <i style="color:#B58900;">i</i> <span style="color:#DA1039;">++</span>) {
+		k[<i style="color:#B58900;">i</i>] <span style="color:#DA1039;">=</span> int2Bin(parseInt(k[<i style="color:#B58900;">i</i>]));
 	}
 
-	// xor pega o res da operação xor
-	// que acaba retornando a formas em binário
-	// dos decimais ASCII
-	let xor = xOr(str, k.join(", ")),
-	   // split separa em forma de array
-	   // o xor, a cada ocorrência de ", "
-	   // que serve para separar o binário
-	   // de cada caractere ASCII
-	   bin = xor.split(", "),
-	   // ascii receberá a conversão
-	   ascii = "";
+	<i style="color:#586E75;">// xor pega o res da operação xor</i>
+	<i style="color:#586E75;">// que acaba retornando a formas em binário</i>
+	<i style="color:#586E75;">// dos decimais ASCII</i>
+	<span style="color:#268BD2;">let</span> xor <span style="color:#DA1039;">=</span> xOr(str, k.join(<span style="color:#B58900;">", "</span>)),
+	   <i style="color:#586E75;">// split separa em forma de array</i>
+	   <i style="color:#586E75;">// o xor, a cada ocorrência de ", "</i>
+	   <i style="color:#586E75;">// que serve para separar o binário</i>
+	   <i style="color:#586E75;">// de cada caractere ASCII</i>
+	   bin <span style="color:#DA1039;">=</span> xor.<span style="color:#859900;">split</span>(<span style="color:#B58900;">", "</span>),
+	   <i style="color:#586E75;">// ascii receberá a conversão</i>
+	   ascii <span style="color:#DA1039;">=</span> <span style="color:#B58900;">""</span>;
 
-	// convertendo binário para int e pondo em ascii
-	for (k = 0; k < bin.length; k++) {
-		ascii += bin2Int(bin[k])+", ";
+	<i style="color:#586E75;">// convertendo binário para int e pondo em ascii</i>
+	<span style="color:#DA1039;">for</span> (<i style="color:#B58900;">k</i> <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>; <i style="color:#B58900;">k</i> <span style="color:#DA1039;"><</span> bin.length; <i style="color:#B58900;">k</i><span style="color:#DA1039;">++</span>) {
+		ascii <span style="color:#DA1039;">+=</span> bin2Int(bin[<i style="color:#B58900;">k</i>])<span style="color:#DA1039;">+</span><span style="color:#B58900;">", ";
 	}
 
-	// agora vamos converter os decimais de ASCII
-	// em caracteres e por na array chars
-	let chars = ascii.split(", ");
+	<i style="color:#586E75;">// agora vamos converter os decimais de ASCII</i>
+	<i style="color:#586E75;">// em caracteres e por na array chars</i>
+	<span style="color:#268BD2;">let</span> chars <span style="color:#DA1039;">=</span> ascii.split(<span style="color:#B58900;">", "</span>);
 	
-	for (l = 0; l < chars.length; l++){
-		chars[l] = String.fromCharCode(parseInt(chars[l]));
-		// String.fromCharCode(...): converte decimal ASCII em
-		// caractere
+	<span style="color:#DA1039;">for</span> (<i style="color:#B58900;">l</i> <span style="color:#DA1039;">=</span> <span style="color:#6F5499;">0</span>; <i style="color:#B58900;">l</i> <span style="color:#DA1039;"><</span> chars.length; <i style="color:#B58900;">l</i><span style="color:#DA1039;">++</span>){
+		chars[<i style="color:#B58900;">l</i>] <span style="color:#DA1039;">=</span> <span style="color:#859900;">String</span>.<span style="color:#859900;">fromCharCode</span>(<span style="color:#859900;">parseInt</span>(chars[<i style="color:#B58900;">l</i>]));
+		<i style="color:#586E75;">// String.fromCharCode(...): converte decimal ASCII em</i>
+		<i style="color:#586E75;">// caractere</i>
 	}
 
-	// converte chars (array) em string
-	// e coloca no HTML interno de output
-	output.innerHTML = chars.join("");
+	<i style="color:#586E75;">// converte chars (array) em string</i>
+	<i style="color:#586E75;">// e coloca no HTML interno de output</i>
+	output.innerHTML <span style="color:#DA1039;">=</span> chars.<span style="color:#859900;">join</span>(<span style="color:#B58900;">""</span>);
 }
 
 			  </code>
